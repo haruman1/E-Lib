@@ -1,4 +1,4 @@
-<?php include  '../template/head/headregister.php' ?>
+<?php include '../template/head/headregister.php'; ?>
 
 <form class="regis_form" method="POST" action="../inc/daftar.php">
     <input type="email" placeholder="Email anda" name="email">
@@ -12,4 +12,4 @@
     </p>
 </form>
 
-<?php include  '../template/footer/footregister.php' ?>
+<?php include '../template/footer/footregister.php'; ?>
