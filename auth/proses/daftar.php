@@ -8,7 +8,7 @@ $messageBody = FilePenting::curl_get_contents(
   'http://localhost/e-book/inc/prosesdaftar.php'
 );
 if (empty($_POST['register'])) {
-  FilePenting::add_with_type('Gagal mendaftar, silahkan coba lagi 1', 'danger');
+  FilePenting::add_with_type('Gagal mendaftar, silahkan coba lagi ', 'danger');
 } else {
   if (!empty($_POST['register'] == 'register')) {
     $nama = htmlspecialchars($_POST['nama'], ENT_DISALLOWED);
@@ -40,7 +40,9 @@ if (empty($_POST['register'])) {
         Terimakasih,Tolong Aktivasi Akun anda! </br> Jangan Lupa Check Folder Spam!</div>'
       );
       FilePenting::kirim_email($email_user, $messageBody, $token);
-      echo '<script>window.location.href="../register.php"</script>';
+      echo '<script>window.location.href="../../mail/verif.php?email=' .
+        $email_user .
+        '&token="</script>';
     } else {
       FilePenting::add('<div class="alert alert-danger" role="alert">
       Maaf, data anda ada yang salah</div>');
