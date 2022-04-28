@@ -4,9 +4,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 require __DIR__ . '/../../vendor/autoload.php';
 require_once '../../inc/includepenting.php';
 require_once '../../inc/kon.php';
-$messageBody = FilePenting::curl_get_contents(
-  'http://localhost/e-book/inc/prosesdaftar.php'
-);
+require '../../inc/env.php';
+
 if (empty($_POST['register'])) {
   FilePenting::add_with_type('Gagal mendaftar, silahkan coba lagi ', 'danger');
 } else {
@@ -18,7 +17,12 @@ if (empty($_POST['register'])) {
     $is_active = 0;
     $role = 2;
     $token = substr(number_format(time() * rand(), 0, '', ''), 0, 10);
-    $date_created = time();
+    $date_created = date('Y-m-d');
+
+    $insert_user = mysqli_query(
+      $con,
+      "INSERT INTO user (id_user,nama,username,email,password,role,is_active,date_created) VALUES ('','$nama','$username','$email_user','$password','$role','$is_active','$date_created')"
+    );
     $data_body = [
       'nama' => $nama,
       'email' => $email_user,
@@ -30,22 +34,20 @@ if (empty($_POST['register'])) {
       'date_created' => $date_created,
     ];
     $json = json_encode($data_body);
-    $insert_user = mysqli_query(
-      $con,
-      "INSERT INTO user (id_user,role,nama,username,email,password,is_active,date_created) VALUES ('','$role','$nama','$username','$email_user','$password','$is_active','$date_created')"
-    );
+    $kirim = file_put_contents('../../json/data_daftar.json', $json);
     if (!empty($insert_user)) {
       FilePenting::add(
         '<div class="alert alert-success" role="alert">
-        Terimakasih,Tolong Aktivasi Akun anda! </br> Jangan Lupa Check Folder Spam!</div>'
+          Terimakasih,Tolong Aktivasi Akun anda! </br> Jangan Lupa Check Folder Spam!</div>'
+      );
+      $messageBody = FilePenting::curl_get_contents(
+        $_ENV['WEB_LINK'] . 'utsPemWeb/mail/sendverif.php'
       );
       FilePenting::kirim_email($email_user, $messageBody, $token);
-      echo '<script>window.location.href="../../mail/verif.php?email=' .
-        $email_user .
-        '&token="</script>';
+      echo '<script>window.location.href="../register.php"</script>';
     } else {
       FilePenting::add('<div class="alert alert-danger" role="alert">
-      Maaf, data anda ada yang salah</div>');
+        Maaf, data anda ada yang salah</div>');
       echo '<script>window.location.href="../register.php"</script>';
     }
   } else {
