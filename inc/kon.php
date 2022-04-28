@@ -8,7 +8,5 @@ $db = $_ENV['DB_DATABASE'];
 $con = mysqli_connect($jaringan, $user, $pass, $db);
 mysqli_select_db($con, $db);
 if (!$con) {
-    die("Connection failed: " . mysqli_connect_error());
-} else {
-    echo "";
+  die('Connection failed: ' . mysqli_connect_error());
 }
