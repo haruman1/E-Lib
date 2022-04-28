@@ -1,4 +1,6 @@
 
+$_POST
+
 
 <!DOCTYPE html>
 <html>

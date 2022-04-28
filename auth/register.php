@@ -1,8 +1,8 @@
 <?php
-session_start();
+
 include_once '../template/head/headregister.php';
 require_once '../inc/includepenting.php';
-$file_penting->render();
+echo $file_penting->render('message');
 ?>
 
 <form class="regis_form" method="POST" action="./proses/daftar.php">
