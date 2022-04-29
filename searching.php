@@ -6,7 +6,7 @@
     <html>
 
     <head>
-        <title>Kategori Buku</title>
+        <title>Cari Buku</title>
         <link rel="stylesheet" href="./assets/styles/css/common/search.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
