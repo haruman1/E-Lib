@@ -1,13 +1,18 @@
 <?php
 session_start();
+<<<<<<< HEAD
 
 use PHPMailer\PHPMailer\PHPMailer;
 
+=======
+use PHPMailer\PHPMailer\PHPMailer;
+>>>>>>> e8fa32eca49c7d42849bcb3fa8048f82031dc0d2
 require 'env.php';
 require __DIR__ . '/../vendor/autoload.php';
 //buat seperti session_flashdata di codeigniter
 class FilePenting
 {
+<<<<<<< HEAD
   public static function backup_table_database($dbHost, $dbUsername, $dbPassword, $dbName, $tables = '*')
   {
     //menghubungkan & memilih database
@@ -73,6 +78,8 @@ class FilePenting
     $type = $_SESSION['type'];
     echo '<div class="alert alert-' . $type . '">' . implode('<br/>', $messages) . '</div>';
   }
+=======
+>>>>>>> e8fa32eca49c7d42849bcb3fa8048f82031dc0d2
   public static function render()
   {
     if (!isset($_SESSION['messages'])) {
@@ -91,6 +98,7 @@ class FilePenting
     }
     $_SESSION['messages'][] = $message;
   }
+<<<<<<< HEAD
   public static function add_with_type($message, $type, $location)
   {
     if (!isset($_SESSION['messages'])) {
@@ -101,6 +109,14 @@ class FilePenting
     $_SESSION['type'] = $type;
     $_SESSION['messages'][] = "<div class='alert alert-$type'>$message</div>";
     echo '<script>window.location.href="' . $location . '"</script>';
+=======
+  public static function add_with_type($message, $type)
+  {
+    if (!isset($_SESSION['messages'])) {
+      $_SESSION['messages'] = [];
+    }
+    $_SESSION['messages'][] = "<div class='alert alert-$type'>$message</div>";
+>>>>>>> e8fa32eca49c7d42849bcb3fa8048f82031dc0d2
   }
   public static function curl_get_contents($url)
   {
@@ -140,7 +156,14 @@ class FilePenting
     curl_close($ch);
     return $output;
   }
+<<<<<<< HEAD
 
+=======
+  public static function badan_email($email, $nama, $token)
+  {
+    require '../mail/sendverif.php';
+  }
+>>>>>>> e8fa32eca49c7d42849bcb3fa8048f82031dc0d2
   public static function kirim_email($email, $messageBody, $token)
   {
     $email = new PHPMailer();
@@ -166,5 +189,12 @@ class FilePenting
     }
   }
 }
+<<<<<<< HEAD
 //bisa digunakan secara langsung atau tidak,bebass
 $file_penting = new FilePenting();
+=======
+
+$file_penting = new FilePenting();
+
+?>
+>>>>>>> e8fa32eca49c7d42849bcb3fa8048f82031dc0d2
