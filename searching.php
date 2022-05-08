@@ -40,16 +40,16 @@
                  <?php
 
                     if (isset($_POST['submit-search'])) {
-                        $search = mysqli_real_escape_string($conn, $_POST['search']);
+                        $search = mysqli_real_escape_string($con, $_POST['search']);
                         $sql = "SELECT * FROM hlmnbuku WHERE judulbuku LIKE '%$search%' OR textbuku LIKE '%$search%' OR kategoribuku LIKE '%$search%' OR author LIKE '%$search%'";
-                        $result = mysqli_query($conn, $sql);
+                        $result = mysqli_query($con, $sql);
                         $queryResults = mysqli_num_rows($result);
 
-
+                        echo "<p style='margin: 10px';>Terdapat " . $queryResults . " Pencarian Serupa</P>";
 
                         if ($queryResults > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<p style='margin: 10px';>Terdapat " . $queryResults . " Pencarian Serupa</P>";
+                               
                                 echo
                                 "<div class='content'>
                                         <div class='item box'>
