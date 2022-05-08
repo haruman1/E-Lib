@@ -1,3 +1,6 @@
+ <?php
+    include_once './inc/kon.php';
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
