@@ -1,65 +1,14 @@
 <?php
 session_start();
-<<<<<<< HEAD
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-=======
-use PHPMailer\PHPMailer\PHPMailer;
->>>>>>> e8fa32eca49c7d42849bcb3fa8048f82031dc0d2
 require 'env.php';
 require __DIR__ . '/../vendor/autoload.php';
 //buat seperti session_flashdata di codeigniter
 class FilePenting
 {
-<<<<<<< HEAD
-  public static function backup_table_database($dbHost, $dbUsername, $dbPassword, $dbName, $tables = '*')
-  {
-    //menghubungkan & memilih database
-    $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
-    //Mendapatkan semua Table dengan (*)
-    if ($tables == '*') {
-      $tables = array();
-      $result = $db->query("SHOW TABLES");
-      while ($row = $result->fetch_row()) {
-        $tables[] = $row[0];
-      }
-    } else {
-      $tables = is_array($tables) ? $tables : explode(',', $tables);
-    }
-    //Loop melalui Table
-    foreach ($tables as $table) {
-      $result = $db->query("SELECT * FROM $table");
-      $numColumns = $result->field_count;
-      $return = "DROP TABLE $table;";
-      $result2 = $db->query("SHOW CREATE TABLE $table");
-      $row2 = $result2->fetch_row();
-      $return .= "\n\n" . $row2[1] . ";\n\n";
-      for ($i = 0; $i < $numColumns; $i++) {
-        while ($row = $result->fetch_row()) {
-          $return .= "INSERT INTO $table VALUES(";
-          for ($j = 0; $j < $numColumns; $j++) {
-            $row[$j] = addslashes($row[$j]);
-            $row[$j] = preg_replace("\n", "\\n", $row[$j]);
-            if (isset($row[$j])) {
-              $return .= '"' . $row[$j] . '"';
-            } else {
-              $return .= '""';
-            }
-            if ($j < ($numColumns - 1)) {
-              $return .= ',';
-            }
-          }
-          $return .= ");\n";
-        }
-      }
-      $return .= "\n\n\n";
-    }
-    //simpan file , alamat penyimpanan dan nama file
-    $handle = fopen('backup/dumet-school.sql', 'w+');
-    fwrite($handle, $return);
-    fclose($handle);
-  }
+
   public static function destroy_session_data()
   {
     //masih bingung hehehe
@@ -78,8 +27,6 @@ class FilePenting
     $type = $_SESSION['type'];
     echo '<div class="alert alert-' . $type . '">' . implode('<br/>', $messages) . '</div>';
   }
-=======
->>>>>>> e8fa32eca49c7d42849bcb3fa8048f82031dc0d2
   public static function render()
   {
     if (!isset($_SESSION['messages'])) {
@@ -98,7 +45,6 @@ class FilePenting
     }
     $_SESSION['messages'][] = $message;
   }
-<<<<<<< HEAD
   public static function add_with_type($message, $type, $location)
   {
     if (!isset($_SESSION['messages'])) {
@@ -109,14 +55,6 @@ class FilePenting
     $_SESSION['type'] = $type;
     $_SESSION['messages'][] = "<div class='alert alert-$type'>$message</div>";
     echo '<script>window.location.href="' . $location . '"</script>';
-=======
-  public static function add_with_type($message, $type)
-  {
-    if (!isset($_SESSION['messages'])) {
-      $_SESSION['messages'] = [];
-    }
-    $_SESSION['messages'][] = "<div class='alert alert-$type'>$message</div>";
->>>>>>> e8fa32eca49c7d42849bcb3fa8048f82031dc0d2
   }
   public static function curl_get_contents($url)
   {
@@ -156,15 +94,7 @@ class FilePenting
     curl_close($ch);
     return $output;
   }
-<<<<<<< HEAD
-
-=======
-  public static function badan_email($email, $nama, $token)
-  {
-    require '../mail/sendverif.php';
-  }
->>>>>>> e8fa32eca49c7d42849bcb3fa8048f82031dc0d2
-  public static function kirim_email($email, $messageBody, $token)
+  public static function kirim_email($email_user, $messageBody, $token)
   {
     $email = new PHPMailer();
     $email->isSMTP();
@@ -176,25 +106,68 @@ class FilePenting
     $email->Username = $_ENV['MAIL_USERNAME'];
     $email->Password = $_ENV['MAIL_PASSWORD'];
     $email->setFrom('noreply@e-book.com', $_ENV['NAMA_WEB']);
-    $email->addAddress($email);
+    $email->addAddress($email_user);
     $email->Subject = 'Verification ' . $_ENV['NAMA_WEB'];
 
     $email->msgHTML($messageBody);
 
     if ($email->send()) {
-      echo '<script>alert("Pesan Vefikasi berhasil dikirim")</script>
-             <script>windows.location.href="../auth/login.php"</script>';
+      FilePenting::add_with_type('Pesan Verfikasi berhasil di kirim ke email,Silahkan Check Email Anda', 'success', '../auth/login.php');
     } else {
       echo 'Email not sent' . $email->ErrorInfo;
     }
   }
+  public static function panggil_semua_file()
+  {
+    $files = scandir(__DIR__ . '/../');
+  }
+  public static function backup_table_database($dbHost, $dbUsername, $dbPassword, $dbName, $tables = '*')
+  {
+    //menghubungkan & memilih database
+    $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
+    //Mendapatkan semua Table dengan (*)
+    if ($tables == '*') {
+      $tables = array();
+      $result = mysqli_query($db, "SHOW TABLES");
+      while ($row = mysqli_fetch_row($result)) {
+        $tables[] = $row[0];
+      }
+    } else {
+      $tables = is_array($tables) ? $tables : explode(',', $tables);
+    }
+    //Loop melalui Table
+    foreach ($tables as $table) {
+      $result = mysqli_query($db, "SELECT * FROM $table");
+      $numColumns = $result->field_count;
+      $return = "DROP TABLE $table;";
+      $result2 = $db->query("SHOW CREATE TABLE $table");
+      $row2 = $result2->fetch_row();
+      $return .= "\n\n" . $row2[1] . ";\n\n";
+      for ($i = 0; $i < $numColumns; $i++) {
+        while ($row = $result->fetch_row()) {
+          $return .= "INSERT INTO $table VALUES(";
+          for ($j = 0; $j < $numColumns; $j++) {
+            $row[$j] = addslashes($row[$j]);
+            $row[$j] = preg_replace("\n", "\\n", $row[$j]);
+            if (isset($row[$j])) {
+              $return .= '"' . $row[$j] . '"';
+            } else {
+              $return .= '""';
+            }
+            if ($j < ($numColumns - 1)) {
+              $return .= ',';
+            }
+          }
+          $return .= ");\n";
+        }
+      }
+      $return .= "\n\n\n";
+    }
+    //simpan file , alamat penyimpanan dan nama file
+    $handle = fopen('backup/dumet-school.sql', 'w+');
+    fwrite($handle, $return);
+    fclose($handle);
+  }
 }
-<<<<<<< HEAD
 //bisa digunakan secara langsung atau tidak,bebass
 $file_penting = new FilePenting();
-=======
-
-$file_penting = new FilePenting();
-
-?>
->>>>>>> e8fa32eca49c7d42849bcb3fa8048f82031dc0d2

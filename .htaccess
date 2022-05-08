@@ -2,7 +2,3 @@
     order allow,deny
     deny from all
 </Files>
-<Files .json>
-    order allow,deny
-    deny from all
-</Files>

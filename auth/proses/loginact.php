@@ -5,7 +5,7 @@ $verify = new FilePenting();
 $username = htmlspecialchars($_POST['username']);
 $password = htmlspecialchars($_POST['password']);
 $submit = htmlspecialchars($_POST['submit']);
-$check_active = mysqli_fetch_assoc(mysqli_query($con, "SELECT username,is_active FROM user WHERE username='$username'"));
+$check_active = mysqli_fetch_assoc(mysqli_query($con, "SELECT username,is_active,password FROM user WHERE username='$username'"));
 if ($check_active['is_active'] == 1) {
     if (password_verify($password, $check_active['password'])) {
         session_start();
@@ -20,5 +20,5 @@ if ($check_active['is_active'] == 1) {
         $verify->add_with_type('Password salah', 'danger', '../login.php');
     }
 } else {
-    $verify->add_with_type('Username anda belum aktif,Silahkan Check Email', 'danger', '../login.php');
+    $verify->add_with_type('Username anda belum aktif,silahkan Check email untuk aktivasi', 'danger', '../login.php');
 }
