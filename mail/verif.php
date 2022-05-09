@@ -1,5 +1,6 @@
 <?php
 require '../inc/kon.php';
+require '../inc/includepenting.php';
 $mail = htmlspecialchars(strip_tags($_GET['email']));
 $token = htmlspecialchars(strip_tags($_GET['token']));
 $sudah_verif = new FilePenting();

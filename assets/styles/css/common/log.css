@@ -1,42 +1,23 @@
+html {
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  background-image: linear-gradient(rgba(136, 67, 67, 0.5), rgb(185, 86, 86)),
+    url(http://cdnharuman.herokuapp.com/e-lib/e-lib_mail.jpg);
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 /* main */
-#rangka {
-  background: rgb(255, 254, 254);
-  border-radius: 10px;
-  width: 300px;
-  height: 300px;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  text-align: center;
-}
-
-#rangka:hover {
-  background: rgb(118, 126, 126);
-  transition: 1s;
-}
-
-#rangka_regis{
-    background: rgb(255, 254, 254);
-    border-radius: 10px;
-    width: 350px;
-    height: 350px;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    text-align: center;
-}
-
-#rangka_regis:hover{
-    background: rgb(118, 126, 126);
-    transition: 1s;
-}
 
 .form {
   background: rgb(212, 212, 212);
   border-radius: 10px;
+  border: 18px solid #f2f2f2;
   width: 250px;
   height: auto;
   padding: 10px;
@@ -47,20 +28,24 @@
   text-align: center;
 }
 
-.form_regis{
-    background: red;
-    border-radius: 10px;
-    width: 300px;
-    height: 300px;
-    padding: 10px;
-    /* margin: 100px auto; */
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    text-align: center;
-    /* position: relative; */
-    
+.form:hover {
+  border: 18px solid rgb(118, 126, 126);
+  transition: 1s;
+}
+
+.form_regis {
+  background: red;
+  border-radius: 10px;
+  width: 300px;
+  height: 300px;
+  padding: 10px;
+  /* margin: 100px auto; */
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  /* position: relative; */
 }
 
 .login_header p {
@@ -130,17 +115,27 @@ p {
 }
 
 .login_form #username_error,
-.login_form #pass_error{
-	width: 230px;
-	font-size: 11px;
-	color: #C62828;
-	background: rgba(255,0,0,0.1);
-	text-align: center;
-	padding: 5px 8px;
+.login_form #pass_error {
+  width: 230px;
+  font-size: 11px;
+  color: #c62828;
+  background: rgba(255, 0, 0, 0.1);
+  text-align: center;
+  padding: 5px 8px;
   margin-top: -15px;
-	border: 1px solid #EF9A9A;
-	display: none;
+  border: 1px solid #ef9a9a;
+  display: none;
 }
 
 /* end main */
 
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  text-align: center;
+}

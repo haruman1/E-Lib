@@ -1,11 +1,12 @@
 <?php
 require_once '../inc/includepenting.php';
 $direct = new FilePenting();
-if ($_SESSION['username'] and $_SESSION['password'] != NULL) {
-    session_unset('username');
-    session_unset('password');
+if (!empty($_SESSION['username'] and $_SESSION['password'])) {
+    session_start();
     session_destroy();
-    $direct->redirect('login.php', true);
+    die();
+    $direct->redirect('auth/login.php', true);
+    exit;
 } else {
-    $direct->add_with_type('Anda belum login', 'danger', '../login.php');
+    $direct->add_with_type('Anda belum login', 'danger', '../auth/login.php');
 }

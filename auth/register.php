@@ -5,7 +5,7 @@ require_once '../inc/includepenting.php';
 echo $file_penting->render('message');
 ?>
 
-<form class="regis_form" method="POST" action="./proses/daftar.php">
+<form class="regis_form" method="POST" action="./proses/regAct.php">
     <input type="email" placeholder="Email anda" name="email">
     <input type="text" placeholder="Nama anda" name="nama">
     <input type="username" placeholder="Masukkan username" name="username">
@@ -17,4 +17,4 @@ echo $file_penting->render('message');
     </p>
 </form>
 
-<?php include_once '../template/footer/footregister.php'; ?>
+<?php include_once '../template/footer/footer.php'; ?>
