@@ -38,7 +38,11 @@ $query = mysqli_query($con, $sql)
               <td>
                 <div class="box1">
                   <h2>Total User</h2>
-                  <h1>0</h1>
+                  <h1>
+                    <?php
+                    echo mysqli_num_rows($query_user);
+                    ?>
+                 </h1>
                 </div>
               </td>
               <td>
