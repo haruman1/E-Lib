@@ -4,18 +4,19 @@
     
   }
   body{
-    background: antiquewhite;
+    background: white;
     background-repeat: no-repeat;
-      background-size: cover;
+    background-size: cover;
+    
   }
   #header {
-      background-color: rgba(235, 155, 155, 0.89);
+      background-color: rgba(255, 255, 255, 0.89);
       display: flex;
       justify-content: flex-end;
       top: 0;
-      align-items: center;
       padding: 15px;
       z-index: 1;
+      border-bottom:solid rgb(232, 232, 255) 2px;
     }
     html {
       font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
@@ -27,13 +28,13 @@
     button {
       font-weight: 500;
       font-size: 16px;
-      color: rgb(233, 231, 231);
+      color: black;
       text-decoration: none;
     }
-  
-    #header{
-      margin-left: 15%;
+    a.brand{
+      color: black;
     }
+  
   
     main{
       margin-left: 15%;
@@ -55,7 +56,8 @@
     top: 0;
     width: 15%;
     height: 100%;
-    background: rgba(11, 1, 43, 0.863);
+    background: rgb(248, 248, 248);
+    border-right:solid rgb(232, 232, 255) 2px;
   }
   sidebar header{
     color: white;
@@ -87,11 +89,15 @@
   .box1{
     width:250px;
     height:150px;
-    background:rgb(156, 221, 156);
+    background:rgb(223, 235, 223);
     border-radius: 9px;
     text-align: center;
     vertical-align: middle;
     display: table-cell;
+  }
+  .box1:hover{
+    transform: scale(1.09);
+    transition: 0.5s;
   }
   .container {
     margin-top: 30px;
@@ -119,7 +125,7 @@
       }
   
   tbody tr:hover {
-          background-color: rgba(255,255,255,0.3);
+          background-color: rgba(238, 103, 103, 0.3);
         }
   
   tbody td {
