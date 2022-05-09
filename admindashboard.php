@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/styles/css/common/admindashboard.css">
     
-    <title>AdminDashboard</title>
+    <title>Document</title>
 </head>
 <body>
 <header>
@@ -25,10 +25,15 @@
     <li><a href="#">Logout</a></li>
   </ul>
 </sidebar>
+
 <?php
-$sql = 'SELECT nama, username, email, id_user FROM user';
-$query = mysqli_query($con, $sql)
+$sql_user = 'SELECT nama, username, email, id_user FROM user';
+$query_user = mysqli_query($con, $sql_user);
+
+$sql_book = 'SELECT judulbuku, kategoribuku, author FROM hlmnbuku';
+$query_book = mysqli_query($con, $sql_book);
 ?>
+
 <main>
     <div id="content">
       <center>
@@ -42,13 +47,17 @@ $query = mysqli_query($con, $sql)
                     <?php
                     echo mysqli_num_rows($query_user);
                     ?>
-                 </h1>
+                  </h1>
                 </div>
               </td>
               <td>
                 <div class="box1">
                   <h2>Total Buku</h2>
-                  <h1>0</h1>
+                  <h1>
+                  <?php
+                    echo mysqli_num_rows($query_book);
+                    ?>
+                  </h1>
                 </div>
               </td>
             </tr>
@@ -61,42 +70,22 @@ $query = mysqli_query($con, $sql)
               <thead>
                 <tr>
                   <th>Judul Buku</th>
-                  <th>Penerbit</th>
-                  <th>kategori</th>
-                  <th>Stok</th>
+                  <th>Kategori</th>
+                  <th>Author</th>
+                  <!-- <th>Stok</th> -->
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Cell 1</td>
-                  <td>Cell 2</td>
-                  <td>Cell 3</td>
-                  <td>Cell 4</td>
-                </tr>
-                <tr>
-                  <td>Cell 1</td>
-                  <td>Cell 2</td>
-                  <td>Cell 3</td>
-                  <td>Cell 4</td>
-                </tr>
-                <tr>
-                  <td>Cell 1</td>
-                  <td>Cell 2</td>
-                  <td>Cell 3</td>
-                  <td>Cell 4</td>
-                </tr>
-                <tr>
-                  <td>Cell 1</td>
-                  <td>Cell 2</td>
-                  <td>Cell 3</td>
-                  <td>Cell 4</td>
-                </tr>
-                <tr>
-                  <td>Cell 1</td>
-                  <td>Cell 2</td>
-                  <td>Cell 3</td>
-                  <td>Cell 4</td>
-                </tr>
+              <?php
+                while ($row = mysqli_fetch_array($query_book))
+                {
+                  echo '<tr>
+                      <td>'.$row['judulbuku'].'</td>
+                      <td>'.$row['kategoribuku'].'</td>
+                      <td>'.$row['author'].'</td>
+                    </tr>';
+                }
+                ?>
               </tbody>
             </table>
           </div>
@@ -110,12 +99,12 @@ $query = mysqli_query($con, $sql)
                   <th>username</th>
                   <th>Password</th>
                   <th>Email</th>
-                  <th> - </th>
+                  <th> Id </th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                while ($row = mysqli_fetch_array($query))
+                while ($row = mysqli_fetch_array($query_user))
                 {
                   echo '<tr>
                       <td>'.$row['nama'].'</td>
