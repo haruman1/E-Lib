@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/styles/css/common/admindashboard.css">
     
-    <title>Document</title>
+    <title>AdminDashboard</title>
 </head>
 <body>
 <header>
@@ -25,7 +25,10 @@
     <li><a href="#">Logout</a></li>
   </ul>
 </sidebar>
-
+<?php
+$sql = 'SELECT nama, username, email, id_user FROM user';
+$query = mysqli_query($con, $sql)
+?>
 <main>
     <div id="content">
       <center>
@@ -107,36 +110,17 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Cell 1</td>
-                  <td>Cell 2</td>
-                  <td>Cell 3</td>
-                  <td>Cell 4</td>
-                </tr>
-                <tr>
-                  <td>Cell 1</td>
-                  <td>Cell 2</td>
-                  <td>Cell 3</td>
-                  <td>Cell 4</td>
-                </tr>
-                <tr>
-                  <td>Cell 1</td>
-                  <td>Cell 2</td>
-                  <td>Cell 3</td>
-                  <td>Cell 4</td>
-                </tr>
-                <tr>
-                  <td>Cell 1</td>
-                  <td>Cell 2</td>
-                  <td>Cell 3</td>
-                  <td>Cell 4</td>
-                </tr>
-                <tr>
-                  <td>Cell 1</td>
-                  <td>Cell 2</td>
-                  <td>Cell 3</td>
-                  <td>Cell 4</td>
-                </tr>
+                <?php
+                while ($row = mysqli_fetch_array($query))
+                {
+                  echo '<tr>
+                      <td>'.$row['nama'].'</td>
+                      <td>'.$row['username'].'</td>
+                      <td>'.$row['email'].'</td>
+                      <td>'.$row['id_user'].'</td>
+                    </tr>';
+                }
+                ?>
               </tbody>
             </table>
           </div>
