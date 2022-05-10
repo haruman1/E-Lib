@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('Asia/Jakarta');
 require_once 'env.php';
 $jaringan = $_ENV['DB_HOST'];
 $user = $_ENV['DB_USERNAME'];

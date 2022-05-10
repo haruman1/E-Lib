@@ -9,9 +9,10 @@ require __DIR__ . '/../vendor/autoload.php';
 class FilePenting
 {
 
-  public static function destroy_session_data()
+  public static function query_Data($koneksi, $nama_tabel, $kolom, $where)
   {
-    //masih bingung hehehe
+    $query = mysqli_query($koneksi, "SELECT $kolom FROM $nama_tabel WHERE $where");
+    mysqli_fetch_array($query);
   }
   public static function redirect($url, $permanent = false)
   {

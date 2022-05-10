@@ -14,7 +14,7 @@ if (!empty($_POST['register'])) {
     } elseif ($fetchDataUserEmail['username'] == $daftar_username) {
         $daftar->add_with_type('Username Sudah pernah Digunakan Silahkan Login', 'danger', '/register.php');
     } else {
-        $daftar_password = htmlspecialchars($_POST['password']);
+        $daftar_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $daftar_nama = htmlspecialchars($_POST['nama']);
         $daftar_tgl = date('Y-m-d');
         $is_active = 0;
@@ -24,11 +24,13 @@ if (!empty($_POST['register'])) {
         if ($insertToToken) {
             $daftar->add_with_type('Pendaftaran Berhasil, Silahkan check email untuk verifikasi', 'success', './../auth/login.php');
             $insertToUser = mysqli_query($con, "INSERT INTO user (id_user,nama,username,email,password,role,is_active,date_created) VALUES ('','$daftar_nama','$daftar_username','$daftar_email','$daftar_password','$daftar_role','$is_active','$daftar_role') ");
-            while ($insertToUser) {
-                $daftar->kirim_email($daftar_email, 'Terimakasih Telah mendaftar ke kami,silahkan check verifikasi nya melalui = ' . $_ENV['WEB_LINK'] . 'e-lib/mail/verif.php?email=' . $daftar_email . '&token=' . $token . '', $token);
+            if ($insertToUser) {
+                $daftar->kirim_email($daftar_email, 'Terimakasih Telah mendaftar ke kami,silahkan check verifikasi nya melalui = ' . $_ENV['WEB_LINK'] . '../mail/verif.php?email=' . $daftar_email . '&token=' . $token . '', $token);
+            } else {
+                $daftar->add_with_type('Pendaftaran Gagal, Silahkan coba lagi1', 'danger', './../auth/register.php');
             }
         } else {
-            $daftar->add_with_type('Pendaftaran Gagal, Silahkan Coba Lagi', 'danger', './../auth/register.php');
+            $daftar->add_with_type('Pendaftaran Gagal, Silahkan Coba Lagi2', 'danger', './../auth/register.php');
         }
     }
 } else {

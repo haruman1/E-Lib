@@ -8,7 +8,7 @@ $_SESSION['password'] = '';
 if (empty($_SESSION['username'] and $_SESSION['password'])) {
 
 ?>
-	<form class="login_form" method="POST" action="./proses/loginact.php" name="form_login" onsubmit="return(validated());">
+	<form class="login_form" method="POST" action="proses/loginact.php" name="form_login" onsubmit="return(validated());">
 		<input autocomplete="off" type="text" placeholder="Username Anda" name="username" />
 		<div id="username_error">Please fill up your Username </div>
 		<input type="password" placeholder="Password anda" name="password" />
