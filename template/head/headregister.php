@@ -10,7 +10,7 @@ require_once __DIR__ . '../../../inc/env.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/styles/css/common/2_registrasi.css">
+    <link rel="stylesheet" href="../assets/styles/css/common/2_registrasi.css?=?v=1.0">
     <link rel="stylesheet" href="../assets/styles/css/style.css">
 
     <title><?php echo $_ENV['NAMA_WEB'] ?> Register</title>
