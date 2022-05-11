@@ -16,8 +16,10 @@ Tugas yang kami laksanakan selama kegiatan perkuliahan semester 4
 
 # Contoh akun User
 user : user
+
 pw   : user123
 
 # Contoh akun admin
 username : haruman1
+
 password : haruman123
