@@ -47,10 +47,10 @@ $sudah_verif = new FilePenting();
 // }
 $email_user = htmlspecialchars($_GET['email']);
 $token = htmlspecialchars($_GET['token']);
-$check_user = mysqli_fetch_all(mysqli_query($con, "SELECT email FROM user WHERE email = '" . $email_user . "'"));
-if (count($check_user) > 0) {
-  $check_token = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM user_token WHERE email = '" . $email_user . "' AND token = '" . $token . "'"));
-  if (time() - $check_token[0]['date_created'] < (60 * 60 * 24)) {
+$check_user = mysqli_fetch_array(mysqli_query($con, "SELECT email FROM user WHERE email = '" . $email_user . "'"));
+if ($check_user) {
+  $check_token = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM user_token WHERE email = '" . $email_user . "' AND token = '" . $token . "'"));
+  if (time() - $check_token['date_created'] < (60 * 60 * 24)) {
     $update_active = mysqli_query($con, "UPDATE user SET is_active = 1 WHERE email = '" . $email_user . "'");
     $delete_token = mysqli_query($con, "DELETE FROM user_token WHERE email = '" . $email_user . "' AND token = '" . $token . "'");
     $sudah_verif->add_with_type('Selamat, Akun anda telah aktif, silahkan login', 'success', '../auth/login.php');

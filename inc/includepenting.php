@@ -1,17 +1,17 @@
 <?php
-session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 
 require 'env.php';
+require '../inc/koneksi.php';
 require __DIR__ . '/../vendor/autoload.php';
 //buat seperti session_flashdata di codeigniter
 class FilePenting
 {
 
-  public static function query_Data($koneksi, $nama_tabel, $kolom, $where)
+  public static function query_Data($koneksi, $nama_tabel, $kolom, $caridatadimana)
   {
-    $query = mysqli_query($koneksi, "SELECT $kolom FROM $nama_tabel WHERE $where");
+    $query = mysqli_query($koneksi, "SELECT $kolom FROM $nama_tabel WHERE $caridatadimana");
     mysqli_fetch_array($query);
   }
   public static function redirect($url, $permanent = false)
@@ -24,9 +24,14 @@ class FilePenting
     if (!isset($_SESSION['messages'])) {
       return null;
     }
-    $messages = $_SESSION['messages'];
-    $type = $_SESSION['type'];
-    echo '<div class="alert alert-' . $type . '">' . implode('<br/>', $messages) . '</div>';
+    if (time() - $_SESSION['expire'] == 0) {
+      unset($_SESSION['messages']);
+      unset($_SESSION['type']);
+    } else {
+      $messages = $_SESSION['messages'];
+      $type = $_SESSION['type'];
+      echo '<div class="alert alert-' . $type . '">' . implode('<br/>', $messages) . '</div>';
+    }
   }
   public static function render()
   {
@@ -51,7 +56,7 @@ class FilePenting
     if (!isset($_SESSION['messages'])) {
       $_SESSION['messages'] = [];
       $_SESSION['type'] = [];
-      $_SESSION['expire'] = time() + (1 * 10);
+      $_SESSION['expire'] = 500;
     }
     $_SESSION['type'] = $type;
     $_SESSION['messages'][] = "<div class='alert alert-$type'>$message</div>";
@@ -95,7 +100,7 @@ class FilePenting
     curl_close($ch);
     return $output;
   }
-  public static function kirim_email($email_user, $messageBody, $token)
+  public static function kirim_email($email_user, $messageBody, $koneksidatabase)
   {
     $email = new PHPMailer();
     $email->isSMTP();
@@ -106,18 +111,20 @@ class FilePenting
     $email->SMTPAuth = true;
     $email->Username = $_ENV['MAIL_USERNAME'];
     $email->Password = $_ENV['MAIL_PASSWORD'];
-    $email->setFrom('noreply@e-book.com', $_ENV['NAMA_WEB']);
+    $email->setFrom('noreply@e-lib.com', $_ENV['NAMA_WEB']);
     $email->addAddress($email_user);
     $email->Subject = 'Verification ' . $_ENV['NAMA_WEB'];
 
     $email->msgHTML($messageBody);
 
     if ($email->send()) {
-      FilePenting::add_with_type('Pesan Verfikasi berhasil di kirim ke email,Silahkan Check Email Anda', 'success', '../auth/login.php');
+      FilePenting::add_with_type('Pesan Verfikasi berhasil di kirim ke email,Silahkan Check Email Anda', 'success', '../../auth/login.php');
     } else {
-      echo 'Email not sent' . $email->ErrorInfo;
+      FilePenting::add_with_type('Pesan Verfikasi gagal dikirim,Silahkan Daftar Kembali', 'danger', '../../auth/login.php');
+      mysqli_query($koneksidatabase, "DELETE FROM user WHERE email = '$email_user'");
     }
   }
+
   public static function panggil_semua_file()
   {
     $files = scandir(__DIR__ . '/../');

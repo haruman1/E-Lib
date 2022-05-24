@@ -2,7 +2,7 @@
 
 include_once '../template/head/headregister.php';
 require_once '../inc/includepenting.php';
-echo $file_penting->render('message');
+echo $file_penting->render_with_type();
 ?>
 
 <form class="regis_form" method="POST" action="./proses/regAct.php">
