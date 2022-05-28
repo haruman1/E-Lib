@@ -1,10 +1,8 @@
 <?php
 include_once '../template/head/headlogin.php';
-require_once '../inc/includepenting.php';
 
 echo $file_penting->render_with_type();
-$_SESSION['username'] = '';
-$_SESSION['password'] = '';
+
 if (empty($_SESSION['username'] and $_SESSION['password'])) {
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-include_once './inc/env.php'
+include_once __DIR__ . './inc/env.php'
 
 ?>
 
@@ -10,8 +10,10 @@ include_once './inc/env.php'
 
 <head>
   <title>Perpustakaan Online <?php echo $_ENV['NAMA_WEB']  ?></title>
-  <link rel="stylesheet" href="./assets/styles/css/style.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./assets/styles/css/style.css?v=2.0.1" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -22,10 +24,10 @@ include_once './inc/env.php'
       <nav>
         <ul>
           <li><a href="#home" class="menu active">Home</a></li>
-          <li><a href="CategoryBook.php" class="menu">Book</a></li>
+          <li><a href="<?php echo $_ENV['LINK_WEB']  ?>category/" class="menu">Book</a></li>
           <li><a href="#About" class="menu">About</a></li>
-          <li><a href="BookmarkPage.php" class="menu">Bookmark</a></li>
-          <li><a href="auth/login.php" class="menu active">Login</a></li>
+          <li><a href="<?php echo $_ENV['LINK_WEB']  ?>category/book/mark/" class="menu">Bookmark</a></li>
+          <li><a href="<?php echo $_ENV['LINK_WEB']  ?>auth/login.php" class="menu active">Login</a></li>
         </ul>
       </nav>
     </article>
@@ -47,7 +49,7 @@ include_once './inc/env.php'
                 buku itu." <span>-John Green, The Fault in Our Stars</span></i>
             </p>
           </div>
-          <form action="searching.php" method="POST">
+          <form action="<?php echo $_ENV['LINK_WEB']  ?>/category/book/search/index.php" method="POST">
             <div class="search">
               <div class="input-book">
                 <input type="text" placeholder="Search buku, author, kategori, sinopsis" name="search" />
@@ -121,5 +123,6 @@ include_once './inc/env.php'
     });
   }
 </script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>

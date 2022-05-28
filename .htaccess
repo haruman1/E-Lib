@@ -1,11 +1,6 @@
-
-
 RewriteEngine On
 RewriteBase /
-ErrorDocument 404 http://localhost/new/E-lib/page/error/404.php
-FallbackResource http://localhost/new/E-lib/page/error/404.php
-RewriteCond %{REQUEST_URI} ^/404/$
-RewriteRule ^(.*)$ <YourRelativePathToPHPFile>/404.php [L]
+FallbackResource /new/E-lib/page/error/404.php
 <Files .env>
     order allow,deny
     deny from all

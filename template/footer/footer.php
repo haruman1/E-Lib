@@ -50,5 +50,20 @@
         }
     }
 </script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11?v=1.0.0"></script>
+<?php
+if (isset($_SESSION['error_login']) and $_SESSION['error_login'] == true); ?>
+<script>
+    Swal.fire({
+        title: 'Login Gagal',
+        text: 'Username atau Password Salah',
+        icon: 'error',
+        confirmButtonText: 'OK'
+    })
+</script>
+<?php
+unset($_SESSION['error_login']);
+
+?>
 
 </html>

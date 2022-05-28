@@ -4,7 +4,8 @@ $direct = new FilePenting();
 if (!empty($_SESSION['username'] and $_SESSION['password'])) {
     session_start();
     session_destroy();
-    die();
+    unset($_SESSION['username']);
+    unset($_SESSION['password']);
     $direct->redirect('auth/login.php', true);
     exit;
 } else {

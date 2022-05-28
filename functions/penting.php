@@ -176,6 +176,21 @@ class FilePenting
         fwrite($handle, $return);
         fclose($handle);
     }
+    public static function create_hash($masukkan_tulisan)
+    {
+        $awalnya = array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
+        $gantinya =   array("~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "|", "}", "{", "[", "]", ";", ":", "?", ">", ".", "<");
+        $hasilnya = str_replace($awalnya, $gantinya, $masukkan_tulisan);
+        echo $hasilnya;
+    }
+
+    function decode_hash($masukkan_hash)
+    {
+        $kodenya =  array("~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "|", "}", "{", "[", "]", ";", ":", "?", ">", ".", "<");
+        $terjemahanya = array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
+        $hasilterjemahan = str_replace($kodenya, $terjemahanya, $masukkan_hash);
+        echo $hasilterjemahan;
+    }
 }
 //bisa digunakan secara langsung atau tidak,bebass
 $file_penting = new FilePenting();
