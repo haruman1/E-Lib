@@ -137,6 +137,11 @@ require_once '../../../inc/includepenting.php';
                 <!-- ============================================================== -->
                 <form action="save-book.php" method="post" enctype="multipart/form-data">
 					<div class="box-body">
+                    <div class="form-group">
+							<label>Id Buku</label>
+							<input type="text" name="id_buku" id="id_buku" class="form-control" placeholder="Id Buku">
+						</div>
+
 						<div class="form-group">
 							<label>Judul Buku</label>
 							<input type="text" name="judulbuku" id="judulbuku" class="form-control" placeholder="Judul Buku">
@@ -158,6 +163,13 @@ require_once '../../../inc/includepenting.php';
 						</div>
 
 						<div class="form-group">
+							<label for="cover_buku">Cover Buku</label>
+							<input type="file" name="cover_buku" id="cover_buku">
+							<p class="help-block">
+								<font color="red">Format file .jpg"</p>
+						</div>
+
+                        <div class="form-group">
 							<label for="exampleInputFile">Upload Buku</label>
 							<input type="file" name="file_buku" id="file_buku">
 							<p class="help-block">

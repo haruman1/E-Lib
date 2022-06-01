@@ -18,6 +18,10 @@ if(isset($_GET['id_buku'])){
     if (file_exists("pdf/$pdf")){
         unlink("pdf/$pdf");
     }
+    $jpg= $data_cek['cover_buku'];
+    if (file_exists("cover/$jpg")){
+        unlink("cover/$jpg");
+    }
 
     $sql_hapus = "DELETE FROM hlmnbuku WHERE id_buku='".$_GET['id_buku']."'";
     $query_hapus = mysqli_query($con, $sql_hapus);
