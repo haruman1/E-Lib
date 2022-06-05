@@ -1,20 +1,24 @@
-#viewer {
-  background-color: #c91919;
-  /* width: 800px;
-  height: 500px; */
-}
+
+
 
 #read iframe {
-  margin-top: -50px;
+  border: 20px solid white;
+  border-radius: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   width: 1080px;
   height: 720px;
 }
 
+#read:hover iframe {
+  border: 20px solid rgb(145, 144, 144);
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
 @media screen and (max-width: 760px) {
   #read iframe {
-    margin-top: -200px;
     /* bottom: 111px; */
-    width: 350px;
-    height: 475px;
+    width: 500px;
   }
 }

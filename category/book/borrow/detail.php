@@ -6,8 +6,8 @@ require_once __DIR__ . '../../../../functions/penting.php';
 <html>
 
 <head>
-    <title><?php echo $_ENV['NAMA_WEB']  ?> Detail Pinjam</title>
-    <link rel="stylesheet" href="<?php echo $_ENV['LINK_WEB']  ?>assets/styles/css/common/BorrowPageDetail.css" />
+    <title><?php echo $_ENV['NAMA_WEB']  ?> | Detail Pinjam</title>
+    <link rel="stylesheet" href="<?php echo $_ENV['LINK_WEB']  ?>assets/styles/css/common/BorrowPageDetail.css?v=1.2" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
@@ -16,12 +16,13 @@ require_once __DIR__ . '../../../../functions/penting.php';
     <!-- Header -->
     <header>
         <article id="header">
-            <a href="./index.html" class="brand">E - Lib</a>
+            <a href="<?php echo $_ENV['LINK_WEB']  ?>" class="brand">E - Lib</a>
             <nav>
                 <ul>
-                    <li><a href="<?php echo $_ENV['LINK_WEB']  ?>index.php" class="menu">Home</a></li>
-                    <li><a href="<?php echo $_ENV['LINK_WEB']  ?>/category" class="menu">Book</a></li>
-
+                    <li><a href="<?php echo $_ENV['LINK_WEB']  ?>" class="menu">Home</a></li>
+                    <li><a href="<?php echo $_ENV['LINK_WEB']  ?>category" class="menu">Book</a></li>
+                    <li><a href="#" class="menu">About</a></li>
+                    <li><a href="<?php echo $_ENV['LINK_WEB']  ?>category/book/mark/" class="menu">Bookmark</a></li>
                 </ul>
             </nav>
         </article>
@@ -30,6 +31,11 @@ require_once __DIR__ . '../../../../functions/penting.php';
     <!-- Body -->
     <main>
         <div class="peminjaman container">
+            <?php 
+            $id_buku = $_GET['id_buku'];
+            $sql = mysqli_query($con, "SELECT * FROM hlmnbuku WHERE id_buku = '$id_buku'");
+            $data = mysqli_fetch_array($sql);
+            ?>
             <!-- Left Panel -->
             <div class="left-panel">
                 <div class="head">
@@ -41,13 +47,13 @@ require_once __DIR__ . '../../../../functions/penting.php';
                         <div class="list-category">
                             <div class="item-list">
                                 <div class="item-img">
-                                    <a href="BorrowPage.html">
-                                        <img src="<?php echo $_ENV['LINK_WEB']  ?>assets/image/buku1.jpg" alt="img" class="img" syle="height: 500px" />
+                                    <a href="index.php?id_buku=<?= $data['id_buku']?>">
+                                        <img src="<?php echo $_ENV['LINK_WEB']  ?>admin/html/book/cover/<?= $data['cover_buku'] ?>" alt="img" class="img" syle="height: 500px" />
                                     </a>
                                     <div class="item-info">
-                                        <a href="BorrowPage.html">
-                                            <h4>Catcher in The Rye</h4>
-                                            <p>J.D. Salinger</p>
+                                        <a href="index.php?id_buku=<?= $data['id_buku']?>">
+                                            <h4><?= $data['judulbuku']?></h4>
+                                            <p><?= $data['author']?></p>
                                         </a>
                                     </div>
                                 </div>
@@ -77,9 +83,8 @@ require_once __DIR__ . '../../../../functions/penting.php';
                 <div class="pinjam box">
                     <h3>Ringkasan Pinjaman</h3>
                     <div class="buku-dipinjam column">
-                        <h3>Buku yang dipinjam</h3>
-                        <p>Catcher in The Rye</p>
-                        <p>J.D. Salinger</p>
+                        <h3><?= $data['judulbuku']?></h3>
+                        <p><?= $data['author']?></p>
                     </div>
                     <div class="durasi-pinjam column">
                         <h3>Durasi Pinjam</h3>
@@ -101,29 +106,30 @@ require_once __DIR__ . '../../../../functions/penting.php';
                         </div>
                         <div class="modal-body">
                             <h3 style="padding-bottom: 10px">Buku yang dipinjam</h3>
-                            <img src="<?php echo $_ENV['LINK_WEB']  ?>assets/image/buku1.jpg" alt="" syle="height: 500px" />
+                            <img src="<?php echo $_ENV['LINK_WEB']  ?>admin/html/book/cover/<?= $data['cover_buku'] ?>" alt="" syle="height: 500px" />
                             <div class="nama-buku" style="border-bottom: 1px solid #e1e8ee; padding-bottom: 20px;">
                                 <h3 style="padding-bottom: 10px">Nama Buku</h3>
-                                <p>Catcher in The Rye</p>
+                                <p><?= $data['judulbuku']?></p>
                             </div>
                             <div class="nama-penulis" style="border-bottom: 1px solid #e1e8ee; padding-bottom: 20px;">
                                 <h3 style="padding-bottom: 10px">Penulis Buku</h3>
-                                <p>J.D. Salinger</p>
+                                <p><?= $data['author']?></p>
+                            </div>
+                            <div class="nama-buku" style="border-bottom: 1px solid #e1e8ee; padding-bottom: 20px;">
+                                <h3 style="padding-bottom: 10px">Durasi Pinjam</h3>
+                                <p id="durasi" name="durasi"> </p>
+                            </div>
+                            <div class="nama-buku" style="border-bottom: 1px solid #e1e8ee; padding-bottom: 20px;">
+                                <h3 style="padding-bottom: 10px">Hari ini</h3>
+                                <p id="hariini"></p>
+                            </div>
+                            <div class="durasi-pinjam" style="border-bottom: 1px solid #e1e8ee; padding-bottom: 20px;">
+                                <h3 style="padding-bottom: 10px">Pengembalian</h3>
+                                <p>Durasi Selesai</p>
+                                <p id="WaktuPinjem"></p>
                             </div>
                         </div>
-                        <div class="nama-buku" style="border-bottom: 1px solid #e1e8ee; padding-bottom: 20px;">
-                            <h3 style="padding-bottom: 10px">Durasi Pinjam</h3>
-                            <p id="durasi" name="durasi"> </p>
-                        </div>
-                        <div class="nama-buku" style="border-bottom: 1px solid #e1e8ee; padding-bottom: 20px;">
-                            <h3 style="padding-bottom: 10px">Hari ini</h3>
-                            <p id="hariini"></p>
-                        </div>
-                        <div class="durasi-pinjam" style="border-bottom: 1px solid #e1e8ee; padding-bottom: 20px;">
-                            <h3 style="padding-bottom: 10px">Pengembalian</h3>
-                            <p>Durasi Selesai</p>
-                            <p id="WaktuPinjem"></p>
-                        </div>
+                        
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary">Save changes</button>

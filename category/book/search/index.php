@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../../functions/penting.php';
     <!-- Header -->
     <header>
         <article id="header">
-            <a href="<?php echo $_ENV['LINK_WEB']  ?>index.php" class="brand">E - Lib</a>
+            <a href="<?php echo $_ENV['LINK_WEB']  ?>index.php" class="brand"><?php echo $_ENV['NAMA_WEB']  ?></a>
             <nav>
                 <ul>
                     <li><a href="<?php echo $_ENV['LINK_WEB']  ?>index.php" class="menu">Home</a></li>
@@ -57,7 +57,7 @@ require_once __DIR__ . '/../../../functions/penting.php';
                                                 <div class='item-list'>
                                                     <div class='item-img'>
                                                         <a href='BorrowPage.php?title=" . $row['judulbuku'] . "&textbuku=" . $row['textbuku'] . "&kategoribuku=" . $row['kategoribuku'] . "&author=" . $row['author'] . "'>
-                                                            <img src='./assets/image/buku1.jpg' alt='img' class='pic'>
+                                                            <img src='".$_ENV['LINK_WEB']."admin/html/book/cover/". $row['cover_buku']. "' alt='img' class='pic'>
                                                         </a>
                                                     </div>
                                                     <div class='item-info'>
@@ -89,12 +89,12 @@ require_once __DIR__ . '/../../../functions/penting.php';
                 <!-- Search Box -->
                 <div class="search box">
                     <h3>Search Book</h3>
-                    <form action="searching.php" method="POST" class="search-form">
+                    <form action="<?php echo $_ENV['LINK_WEB']  ?>category/book/search/" method="POST" class="search-form">
                         <label>
                             <input type="search" class="search-field" placeholder="Search..." name="search">
                         </label>
                         <button type="submit" name="submit-search">
-                            <a href="#" class="search-btn"><img src="/assets/image/search.png" class="search-btn" /></a>
+                            <a href="#" class="search-btn"><img src="<?php echo $_ENV['LINK_WEB']  ?>assets/image/search.png"  class="search-btn" /></a>
                         </button>
                     </form>
                 </div>

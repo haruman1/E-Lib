@@ -17,7 +17,7 @@ require_once __DIR__ . '../../../../functions/penting.php';
     <!-- Header -->
     <header>
         <article id="header">
-            <a href="index.html" class="brand">E - Lib</a>
+            <a href="<?php echo $_ENV['LINK_WEB']  ?>index.php" class="brand"><?php echo $_ENV['NAMA_WEB']  ?></a>
             <nav>
                 <ul>
                     <li><a href="#home" class="menu active">Home</a></li>
@@ -43,28 +43,40 @@ require_once __DIR__ . '../../../../functions/penting.php';
                         <h3 id="AB">Sedang dibaca</h3>
                         <div class="list-category">
                             <div class="item-list">
+                                <?php 
+                                $sql = mysqli_query($con, "SELECT * FROM hlmnbuku WHERE id = '4'");
+                                $data = mysqli_fetch_array($sql);
+                                ?>
                                 <div class="item-img">
-                                    <img src="<?php echo $_ENV['LINK_WEB']  ?>assets/image/buku1.jpg" alt="img" class="pic" />
+                                    <a href="<?= $_ENV['LINK_WEB']?>category/read/index.php?id_buku=<?= $data['id_buku']?>">
+                                    <img src="<?= $_ENV['LINK_WEB']?>admin/html/book/cover/<?= $data['cover_buku']?>" alt="img" class="pic">
+                                    </a>
                                 </div>
                                 <div class="item-info">
-                                    <h3>Catcher in The Rye</h3>
-                                    <p>J.D. Salinger</p>
+                                    <h3><?= $data['judulbuku']?></h3>
+                                    <p><?= $data['author']?></p>
                                     <p><i>hal 204</i></p>
                                     <div class="btn">
-                                        <a href="<?php echo $_ENV['LINK_WEB']  ?>category/read/" class="lanjut-btn">Lanjutkan Membaca</a>
+                                        <a href="<?php echo $_ENV['LINK_WEB']  ?>category/read/?id_buku=<?= $data['id_buku']?>" class="lanjut-btn">Lanjutkan Membaca</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="item-list">
+                                <?php 
+                                $sql = mysqli_query($con, "SELECT * FROM hlmnbuku WHERE id = '3'");
+                                $data = mysqli_fetch_array($sql);
+                                ?>
                                 <div class="item-img">
-                                    <img src="<?php echo $_ENV['LINK_WEB']  ?>assets/image/buku2.jpg" alt="img" class="pic" />
+                                    <a href="<?= $_ENV['LINK_WEB']?>category/read/index.php?id_buku=<?= $data['id_buku']?>">
+                                    <img src="<?= $_ENV['LINK_WEB']?>admin/html/book/cover/<?= $data['cover_buku']?>" alt="img" class="pic">
+                                    </a>
                                 </div>
                                 <div class="item-info">
-                                    <h3>Someone Like You</h3>
-                                    <p>Roald Dahl</p>
+                                    <h3><?= $data['judulbuku']?></h3>
+                                    <p><?= $data['author']?></p>
                                     <p><i>hal 56</i></p>
                                     <div class="btn">
-                                        <a href="<?php echo $_ENV['LINK_WEB']  ?>/category/read/" class="lanjut-btn">Lanjutkan Membaca</a>
+                                        <a href="<?php echo $_ENV['LINK_WEB']  ?>/category/read/?id_buku=<?= $data['id_buku']?>" class="lanjut-btn">Lanjutkan Membaca</a>
                                     </div>
                                 </div>
                             </div>
@@ -75,26 +87,34 @@ require_once __DIR__ . '../../../../functions/penting.php';
                         <h3 id="AB">Baca Nanti</h3>
                         <div class="list-category">
                             <div class="item-list">
+                                <?php 
+                                $sql = mysqli_query($con, "SELECT * FROM hlmnbuku WHERE id = '6'");
+                                $data = mysqli_fetch_array($sql);
+                                ?>
                                 <div class="item-img">
-                                    <img src="<?php echo $_ENV['LINK_WEB']  ?>assets/image/buku3.jpg" alt="img" class="pic" />
+                                    <img src="<?= $_ENV['LINK_WEB']?>admin/html/book/cover/<?= $data['cover_buku']?>" alt="img" class="pic">
                                 </div>
                                 <div class="item-info">
-                                    <h3>The Lord Of The Rings</h3>
-                                    <p>J.R.R Tolkein</p>
+                                    <h3><?= $data['judulbuku']?></h3>
+                                    <p><?= $data['author']?></p>
                                     <div class="btn">
-                                        <a href="#" class="lanjut-btn">Baca Sekarang</a>
+                                        <a href="<?php echo $_ENV['LINK_WEB']  ?>/category/read/?id_buku=<?= $data['id_buku']?>" class="lanjut-btn">Baca Sekarang</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="item-list">
+                                <?php 
+                                $sql = mysqli_query($con, "SELECT * FROM hlmnbuku WHERE id = '5'");
+                                $data = mysqli_fetch_array($sql);
+                                ?>
                                 <div class="item-img">
-                                    <img src="<?php echo $_ENV['LINK_WEB']  ?>assets/image/buku4.jfif" alt="img" class="pic" />
+                                    <img src="<?= $_ENV['LINK_WEB']?>admin/html/book/cover/<?= $data['cover_buku']?>" alt="img" class="pic">
                                 </div>
                                 <div class="item-info">
-                                    <h3>The Shinning</h3>
-                                    <p>Stephen King</p>
+                                    <h3><?= $data['judulbuku']?></h3>
+                                    <p><?= $data['author']?></p>
                                     <div class="btn">
-                                        <a href="#" class="lanjut-btn">Baca Sekarang</a>
+                                        <a href="<?php echo $_ENV['LINK_WEB']  ?>/category/read/?id_buku=<?= $data['id_buku']?>" class="lanjut-btn">Baca Sekarang</a>
                                     </div>
                                 </div>
                             </div>

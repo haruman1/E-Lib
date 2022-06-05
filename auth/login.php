@@ -1,5 +1,5 @@
 <?php
-include_once '../template/head/headlogin.php';
+include_once '../template/auth/headlogin.php';
 
 echo $file_penting->render_with_type();
 

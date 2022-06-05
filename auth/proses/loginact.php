@@ -1,6 +1,6 @@
 <?php
-include_once '../../inc/kon.php';
-include_once '../../inc/includepenting.php';
+include_once '../../inc/koneksi.php';
+include_once '../../functions/penting.php';
 $verify = new FilePenting();
 $username = htmlspecialchars($_POST['username']);
 $password = htmlspecialchars($_POST['password']);
