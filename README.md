@@ -20,6 +20,6 @@ user : user
 pw   : user123
 
 # Contoh akun admin
-username : haruman1
+username : haruman
 
 password : haruman123
