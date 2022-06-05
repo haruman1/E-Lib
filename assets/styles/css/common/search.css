@@ -253,6 +253,7 @@ label {
 .sinopsis p {
     display: inline-block;
     position: relative;
+    align-items: center;
 }
 
 

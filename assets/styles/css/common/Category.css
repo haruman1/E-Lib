@@ -154,13 +154,15 @@ button:hover {
 .item-list {
   display: flex;
   flex-direction: column;
+  width: min-content;
   padding: 20px;
   cursor: pointer;
 }
 
 .list-category {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
 }
 
 .item-list p {
@@ -171,6 +173,10 @@ button:hover {
 
 /* Panel Kanan */
 /* Cari */
+.search {
+  margin-top: 74px;
+}
+
 .search h3 {
   padding-bottom: 20px;
 }

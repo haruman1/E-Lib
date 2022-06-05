@@ -6,8 +6,8 @@ include_once __DIR__ . '/../functions/penting.php';
 <html>
 
 <head>
-    <title><?php echo $_ENV['NAMA_WEB']  ?> Kategori Buku</title>
-    <link rel="stylesheet" href="<?php echo $_ENV['LINK_WEB']  ?>assets/styles/css/common/Category.css">
+    <title><?php echo $_ENV['NAMA_WEB']  ?> | Kategori Buku</title>
+    <link rel="stylesheet" href="<?php echo $_ENV['LINK_WEB']  ?>assets/styles/css/common/Category.css?v=1.1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -20,7 +20,6 @@ include_once __DIR__ . '/../functions/penting.php';
                 <ul>
                     <li><a href="<?php echo $_ENV['LINK_WEB']  ?>index.php" class="menu">Home</a></li>
                     <li><a href="#category" class="menu">Book</a></li>
-                    <li><a href="#" class="menu">Genre</a></li>
                     <li><a href="<?php echo $_ENV['LINK_WEB']  ?>category/book/mark/" class="menu">Bookmark</a></li>
                     <li><a href="<?php echo $_ENV['LINK_WEB']  ?>auth/login.php" class="menu active">Login</a></li>
                 </ul>
@@ -38,6 +37,30 @@ include_once __DIR__ . '/../functions/penting.php';
                     <h2 class="section-title">Kategori</h2>
                 </div>
                 <div class="content">
+                    <div class="item box">
+                        <h3 id="NB">New Book Released</h3>
+                            <div class="list-category">
+                            <?php
+                                $sql = mysqli_query($con, "SELECT * FROM hlmnbuku");
+                                While ($data = mysqli_fetch_array($sql)) { 
+                            ?>    
+                            <div class="item-list">
+                                <div class="item-img">
+                                    <a href="<?= $_ENV['LINK_WEB']?>category/book/borrow/index.php?id_buku=<?= $data['id_buku']?>">
+                                    <img src="<?= $_ENV['LINK_WEB']?>admin/html/book/cover/<?= $data['cover_buku']?>" alt="img" class="pic">
+                                    </a>
+                                </div>
+                                <div class="item-info">
+                                    <h4><?= $data['judulbuku']?></h4>
+                                    <p><?= $data['author']?></p>
+                                </div>
+                            </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+
                     <div class="item box">
                         <h3 id="AB">Author's Book</h3>
                         <div class="list-category">
@@ -81,6 +104,7 @@ include_once __DIR__ . '/../functions/penting.php';
                             </div>
                         </div>
                     </div>
+                    
                     <div class="item box">
                         <h3 id="History">History</h3>
                         <div class="list-category">
@@ -171,13 +195,14 @@ include_once __DIR__ . '/../functions/penting.php';
             <div class="right-side">
 
                 <!-- Search Box -->
+
                 <div class="search box">
                     <h3>Search Book</h3>
                     <form action="<?php echo $_ENV['LINK_WEB']  ?>category/book/search/" method="POST" class="search-form">
                         <label>
                             <input type="search" class="search-field" placeholder="Search..." name="search">
                         </label>
-                        <button type="submit" name="submit-search">
+                        <button type="submit" class="cat" name="submit-search">
                             <a href="#" class="search-btn"><img src="<?php echo $_ENV['LINK_WEB']  ?>assets/image/search.png" class="search-btn" /></a>
                         </button>
                     </form>

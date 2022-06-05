@@ -1,6 +1,6 @@
 <?php
-require_once '../inc/kon.php';
-require_once '../inc/includepenting.php';
+require_once '../inc/koneksi.php';
+require_once '../functions/penting.php';
 $apakah_login = mysqli_query($con, "SELECT * FROM user WHERE username='$_SESSION[username]'");
 $result = mysqli_fetch_array($apakah_login);
 $admin = new FilePenting();

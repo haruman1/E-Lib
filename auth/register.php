@@ -1,6 +1,6 @@
 <?php
 
-include_once '../template/head/headregister.php';
+include_once '../template/auth/headregister.php';
 require_once '../inc/includepenting.php';
 echo $file_penting->render_with_type();
 ?>

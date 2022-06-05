@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../functions/penting.php';
+include_once __DIR__ . '/../../functions/penting.php';
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -7,7 +7,7 @@ include_once __DIR__ . '/../functions/penting.php';
 <head>
     <title><?php echo $_ENV['NAMA_WEB']  ?> Perpustakaan Online</title>
     <link rel="stylesheet" href="<?php echo $_ENV['LINK_WEB']  ?>assets/styles/css/style.css" />
-    <link rel="stylesheet" href="<?php echo $_ENV['LINK_WEB']  ?>assets/styles/css/common/readbook.css" />
+    <link rel="stylesheet" href="<?php echo $_ENV['LINK_WEB']  ?>assets/styles/css/common/readbook.css?v=1.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
@@ -15,7 +15,7 @@ include_once __DIR__ . '/../functions/penting.php';
     <!-- Header -->
     <header>
         <article id="header">
-            <a href="#homepage" class="brand">E - Lib</a>
+            <a href="<?php echo $_ENV['LINK_WEB']  ?>" class="brand"><?php echo $_ENV['NAMA_WEB']  ?></a>
             <nav>
                 <ul>
                     <li><a href="<?php echo $_ENV['LINK_WEB']  ?>" class="menu">Home</a></li>
@@ -29,12 +29,17 @@ include_once __DIR__ . '/../functions/penting.php';
     <!-- Body -->
     <main>
         <article id="home">
+            
             <div class="home container">
                 <div id="main">
                     <div id="viewer">
+                    <?php 
+                        $id_buku = $_GET['id_buku'];
+                        $sql = mysqli_query($con, "SELECT * FROM hlmnbuku WHERE id_buku = '$id_buku'");
+                        $data = mysqli_fetch_array($sql);
+                        ?>
                         <div id="read">
-                            <iframe src="https://drive.google.com/file/d/1zSX0bymR79dhr_nedlpTK5aDByXJedaQ/preview">
-                            </iframe>
+                            <iframe src="<?php echo $_ENV['LINK_WEB']  ?>admin/html/book/pdf/<?= $data['file_buku']?>" ></iframe>
                         </div>
                     </div>
                 </div>

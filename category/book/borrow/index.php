@@ -7,8 +7,16 @@ require_once __DIR__ . '../../../../functions/penting.php';
 <html>
 
 <head>
-    <title><?php echo $_ENV['NAMA_WEB']  ?> The Catcher in the Rye </title>
-    <link rel="stylesheet" href="<?php echo $_ENV['LINK_WEB']  ?>assets/styles/css/common/BorrowPage.css" />
+    <title>
+    <?php
+        $id_buku = $_GET['id_buku'];
+        $sql = mysqli_query($con, "SELECT * FROM hlmnbuku WHERE id_buku = '$id_buku'");
+        $data = mysqli_fetch_array($sql);
+        echo $_ENV['NAMA_WEB'] ?> | <?php
+        echo $data['judulbuku'];
+    ?>
+    </title>
+    <link rel="stylesheet" href="<?php echo $_ENV['LINK_WEB']  ?>assets/styles/css/common/BorrowPage.css?v=1.1" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -32,15 +40,19 @@ require_once __DIR__ . '../../../../functions/penting.php';
     <!-- Body -->
     <main>
         <section id="product" class="product container">
-
+            <?php 
+            $id_buku = $_GET['id_buku'];
+            $sql = mysqli_query($con, "SELECT * FROM hlmnbuku WHERE id_buku = '$id_buku'");
+            $data = mysqli_fetch_array($sql);
+            ?>
             <!-- Left Column -->
             <div class="left-column">
                 <ul class="breadcrumb">
                     <li><a href="<?php echo $_ENV['LINK_WEB']  ?>index.php">Home</a></li>
                     <li><a href="<?php echo $_ENV['LINK_WEB']  ?>category/">Buku</a></li>
-                    <li>The Catcher in The Rye</li>
+                    <li><?= $data['judulbuku'] ?></li>
                 </ul>
-                <img id="imageBuku" src="<?php echo $_ENV['LINK_WEB']  ?>assets/image/buku1.jpg" alt="" style="height: 500px;">
+                <img id="imageBuku" src="<?php echo $_ENV['LINK_WEB']  ?>admin/html/book/cover/<?= $data['cover_buku'] ?>" alt="" style="height: 500px;">
             </div>
 
 
@@ -49,12 +61,9 @@ require_once __DIR__ . '../../../../functions/penting.php';
 
                 <!-- Book Description -->
                 <div class="product-description">
-                    <span>Fiksi Dewasa / Oleh J. D. Salinger</span>
-                    <h1>The Catcher in the Rye</h1>
-                    <p>Saatnya Natal dan Holden Caulfield baru saja dikeluarkan dari sekolah lain. Melarikan diri dari penjahat di Pencey Prep, dia bermain pinball di sekitar New York City mencari hiburan dalam pertemuan singkat - menembak banteng dengan
-                        orang asing di hotel selam, berkeliaran sendirian di sekitar Central Park, dipukuli oleh mucikari dan ditebang oleh mantan pacar. Kota ini indah dan mengerikan, dalam semua kesepian neon dan kemewahan kumuh, rasa kemungkinan dan
-                        kekosongan yang bercampur. Holden melewatinya seperti hantu, selalu memikirkan adik perempuannya Phoebe, satu-satunya orang yang benar-benar memahaminya, dan tekadnya untuk melarikan diri dari kepalsuan dan menemukan kehidupan
-                        yang berarti.</p>
+                    <span>Fiksi Dewasa / Oleh <?= $data['author'] ?></span>
+                    <h1><?= $data['judulbuku'] ?></h1>
+                    <p><?= $data['textbuku'] ?></p>
                 </div>
 
                 <!-- book Configuration -->
@@ -74,7 +83,7 @@ require_once __DIR__ . '../../../../functions/penting.php';
 
                 <!-- Pinjam / Baca -->
                 <div>
-                    <a href="<?php echo $_ENV['LINK_WEB']  ?>category/borrow/detail.php" class="pinjam-btn">Pinjam</a>
+                    <a href="<?php echo $_ENV['LINK_WEB']  ?>category/book/borrow/detail.php?id_buku=<?= $data['id_buku']?>" class="pinjam-btn">Pinjam</a>
                     <a href="auth/login.php" class="baca-btn">Sign in untuk membaca</a>
                 </div>
 
