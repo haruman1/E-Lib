@@ -63,19 +63,12 @@ require_once 'data-buku.php';
                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon -->
                         <b class="logo-icon">
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
-                            <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
-                            <!-- Light Logo icon -->
-                            <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                           
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
-                            <!-- dark Logo text -->
-                            <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                            <!-- Light Logo text -->
-                            <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                            E-Lib
                         </span>
                     </a>
                     <!-- ============================================================== -->
@@ -168,25 +161,6 @@ require_once 'data-buku.php';
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="pinjam-buku.php" aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span
                                     class="hide-menu">Buku-Buku</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="pages-profile.html" aria-expanded="false"><i
-                                    class="mdi mdi-account-network"></i><span class="hide-menu">Profile</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="table-basic.html" aria-expanded="false"><i class="mdi mdi-border-all"></i><span
-                                    class="hide-menu">Table</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="icon-material.html" aria-expanded="false"><i class="mdi mdi-face"></i><span
-                                    class="hide-menu">Icon</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="starter-kit.html" aria-expanded="false"><i class="mdi mdi-file"></i><span
-                                    class="hide-menu">Blank</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="error-404.html" aria-expanded="false"><i class="mdi mdi-alert-outline"></i><span
-                                    class="hide-menu">404</span></a></li>
-                        <li class="text-center p-40 upgrade-btn">
-                            <a href="https://www.wrappixel.com/templates/flexy-bootstrap-admin-template/"
-                                class="btn d-block w-100 btn-danger text-white" target="_blank">Upgrade to Pro</a>
-                        </li>
                     </ul>
 
                 </nav>
@@ -216,10 +190,6 @@ require_once 'data-buku.php';
                         <h1 class="mb-0 fw-bold"><?= $data['judulbuku'] ?></h1> 
                     </div>
                     <div class="col-6">
-                        <div class="text-end upgrade-btn">
-                            <a href="https://www.wrappixel.com/templates/flexy-bootstrap-admin-template/" class="btn btn-primary text-white"
-                                target="_blank">Upgrade to Pro</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -255,10 +225,12 @@ require_once 'data-buku.php';
                                             ></div>
                                     <div class="comment-text w-100">
                                         <h6 class="font-medium"><?= $data['judulbuku'];?></h6>
+                                        <h5 class="font-medium"><?= "oleh " . $data['author'];?></h5>
                                         <span class="m-b-15 d-block"><?= $data['textbuku'];?></span>
                                         <div class="comment-footer">
                                             <span class="text-muted float-end"><?= $data['kategoribuku'];?></span> 
                                             <a href="halaman-buku.php?id_buku=<?= $data['id_buku'] ?>"><span class="badge bg-primary btn">Pinjam</span> </a>
+                                            <a href=""><span class="badge bg-success btn">Baca</span> </a>
                                             <span
                                                 class="action-icons">
                                                 <a href="javascript:void(0)"><i class="ti-pencil-alt"></i></a>
