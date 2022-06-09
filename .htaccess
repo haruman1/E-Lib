@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /
+FallbackResource /new/E-lib/page/error/404.php
+<Files .env>
+    order allow,deny
+    deny from all
+</Files>

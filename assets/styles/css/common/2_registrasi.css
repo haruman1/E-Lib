@@ -1,0 +1,96 @@
+html {
+	font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
+	scroll-behavior: smooth;
+    height: 100%;
+}
+
+body{
+    background-image: linear-gradient(rgba(136, 67, 67, 0.5),rgb(185, 86, 86)) ,url(http://cdnharuman.herokuapp.com/e-lib/e-lib_mail.jpg);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* main */
+
+.form{
+    background: rgb(212, 212, 212);
+    border-radius: 10px;
+    border: 18px solid #f2f2f2;
+    width: 300px;
+    height: auto;
+    padding: 10px;
+    /* margin: 100px auto; */
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    /* position: relative; */
+    
+}
+
+.form:hover{
+    border: 18px solid rgb(118, 126, 126);
+    transition: 1s;
+}
+
+.regis_header p{
+    font-size: 11px;
+}
+
+.regis_form{
+    margin-top: 10px;
+}
+
+.form input {
+    font-family: "Roboto", sans-serif;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    border-radius: 3px;
+    margin: 0 0 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.form button{
+    width: 100%;
+    border: 0;
+    padding: 5px;
+    box-sizing: border-box;
+    background: rgb(252, 236, 236);
+    border-radius: 3px;
+}
+.form button:hover{
+    background: red;
+    transition: 1s;
+}
+
+.regis_form a,p{
+    font-size: 10px;
+}
+
+.login{
+    margin: 10px 0;
+}
+
+.login a:hover{
+    font-weight: bold;
+}
+.login a:hover{
+    font-weight: bold;
+}
+
+/* end main */
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
